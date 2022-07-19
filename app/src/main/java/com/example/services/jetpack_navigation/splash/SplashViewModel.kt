@@ -10,8 +10,9 @@ class SplashViewModel: ViewModel() {
 
     init {
         log("${this::class.java.name} - init is called")
-        delayOperation(2000){
+        delayOperation(3000){
             uiEvents.value = UiEvents.Next
+            log("${this::class.java.name} - Next event arrived")
         }
     }
 

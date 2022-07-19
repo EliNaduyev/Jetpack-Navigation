@@ -36,6 +36,10 @@ class SplashFragment : Fragment() {
         log("${this::class.java.name} - onViewCreated: is called")
     }
 
+    override fun onStop() {
+        super.onStop()
+        log("${this::class.java.name} - onStop: is called")
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -55,9 +59,8 @@ class SplashFragment : Fragment() {
         vm.uiEvents.observe(viewLifecycleOwner){
             when(it){
                 UiEvents.Next -> {
+                    log("${this::class.java.name} - Redirecting user to home screen")
                     findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
-//                    val action = Home.toProfilesListFragment(it.isItPerformECGFlow)
-//                    findNavController().navigate(action)
                 }
             }
         }
