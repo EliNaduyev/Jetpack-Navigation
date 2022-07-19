@@ -55,6 +55,10 @@ class SplashFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
     }
 
+    /**
+     * if uiEvents was arrived in the background he will not lost and the observe callback will be
+     * triggered right after the screen is turned on
+     */
     fun initObservers() {
         vm.uiEvents.observe(viewLifecycleOwner){
             when(it){
