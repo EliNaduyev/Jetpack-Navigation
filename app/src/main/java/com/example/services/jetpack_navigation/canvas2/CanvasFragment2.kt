@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.services.jetpack_navigation.collectLatestLifecycleFlow
 import com.example.services.jetpack_navigation.databinding.FragmentCanvas2Binding
 import com.example.services.jetpack_navigation.log
-import com.example.services.jetpack_navigation.splash.collectLatestLifecycleFlow
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.services.jetpack_navigation.R
+import com.example.services.jetpack_navigation.collectLatestLifecycleFlow
 import com.example.services.jetpack_navigation.databinding.FragmentSplashBinding
 import com.example.services.jetpack_navigation.log
 import kotlinx.coroutines.flow.Flow
@@ -138,14 +139,6 @@ class SplashFragment : Fragment() {
                 log("${this::class.java.name} - Redirecting user to home screen")
                 findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
             }
-        }
-    }
-}
-
-fun <T> Fragment.collectLatestLifecycleFlow(flow: Flow<T>, collect: suspend (T) -> Unit) {
-    viewLifecycleOwner.lifecycleScope.launch {
-        viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-            flow.collectLatest(collect)
         }
     }
 }

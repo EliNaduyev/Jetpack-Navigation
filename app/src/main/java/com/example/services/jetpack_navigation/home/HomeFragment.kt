@@ -9,9 +9,9 @@ import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.services.jetpack_navigation.R
+import com.example.services.jetpack_navigation.collectLatestLifecycleFlow
 import com.example.services.jetpack_navigation.databinding.FragmentHomeBinding
 import com.example.services.jetpack_navigation.log
-import com.example.services.jetpack_navigation.splash.collectLatestLifecycleFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
