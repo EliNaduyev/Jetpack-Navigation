@@ -35,6 +35,12 @@ class HomeViewModel: ViewModel() {
         }
     }
 
+    fun canvas(){
+        viewModelScope.launch {
+            _uiEventsChannel.send(UiEvents.GoToCanvasFlow)
+        }
+    }
+
     override fun onCleared() {
         super.onCleared()
         log("${this::class.java.name} - onCleared is called")

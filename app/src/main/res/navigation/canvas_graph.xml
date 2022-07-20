@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/canvas_screens.xml"
+    app:startDestination="@id/canvasFragment">
+
+    <fragment
+        android:id="@+id/canvasFragment"
+        android:name="com.example.services.jetpack_navigation.canvas.CanvasFragment"
+        tools:layout="@layout/fragment_canvas"
+        android:label="CanvasFragment" >
+        <action
+            android:id="@+id/action_canvasFragment_to_canvasFragment2"
+            app:destination="@id/canvasFragment2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/canvasFragment2"
+        android:name="com.example.services.jetpack_navigation.canvas2.CanvasFragment2"
+        tools:layout="@layout/fragment_canvas_2"
+        android:label="CanvasFragment2" />
+</navigation>

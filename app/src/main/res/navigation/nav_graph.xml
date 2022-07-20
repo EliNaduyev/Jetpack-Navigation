@@ -5,6 +5,8 @@
     android:id="@+id/nav_graph.xml"
     app:startDestination="@id/splashFragment">
 
+    <include app:graph="@navigation/canvas_graph" />
+
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.services.jetpack_navigation.splash.SplashFragment"
@@ -23,6 +25,10 @@
         <action
             android:id="@+id/action_homeFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+
+        <action
+            android:id="@+id/action_fragment_to_canvas_graph"
+            app:destination="@id/canvas_screens.xml" />
     </fragment>
 
     <fragment

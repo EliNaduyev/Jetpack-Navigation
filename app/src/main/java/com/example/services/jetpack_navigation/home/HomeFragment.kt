@@ -43,11 +43,7 @@ class HomeFragment : Fragment() {
     private fun initObservers() {
         lifecycleScope.launchWhenCreated {
             vm.uiEventsSharedFlow.collectLatest {
-                when(it){
-                    UiEvents.Next -> {
-                        findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
-                    }
-                }
+                onEvent(it)
             }
         }
 
@@ -58,22 +54,24 @@ class HomeFragment : Fragment() {
          */
         lifecycleScope.launch {
             vm.uiEventsLiveData.distinctUntilChanged().observe(viewLifecycleOwner) {
-                when(it){
-                    UiEvents.Next -> {
-                        findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
-                    }
-                }
+                onEvent(it)
             }
         }
 
         lifecycleScope.launch {
             collectLatestLifecycleFlow(vm.uiEventsChannel){
-                when(it){
-                    UiEvents.Next -> {
-                        findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
-                    }
-                }
+                onEvent(it)
             }
+        }
+    }
+
+    private fun onEvent(uiEvent: UiEvents) {
+        when(uiEvent){
+            UiEvents.Next -> {
+                findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
+            }
+
+            UiEvents.GoToCanvasFlow -> findNavController().navigate(R.id.action_fragment_to_canvas_graph)
         }
     }
 }
