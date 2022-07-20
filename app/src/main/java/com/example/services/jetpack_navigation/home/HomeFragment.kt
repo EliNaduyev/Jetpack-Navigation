@@ -74,4 +74,5 @@ class HomeFragment : Fragment() {
             UiEvents.GoToCanvasFlow -> findNavController().navigate(R.id.action_fragment_to_canvas_graph)
         }
     }
+
 }
