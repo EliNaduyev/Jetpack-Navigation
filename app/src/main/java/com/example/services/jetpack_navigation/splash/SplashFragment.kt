@@ -126,6 +126,11 @@ class SplashFragment : Fragment() {
         }
     }
 
+    /**
+     * Event will be emitted only when the observer will register to the flow
+     * so when the app in background onEvent will called when app will come to FOREGROUND
+     * so we don't lose the last event
+     */
     private fun observeUiEventChannel(){
         collectLatestLifecycleFlow(vm.uiEventsChannel){
             log("observeUiEventChannel - Channel event arrived")
