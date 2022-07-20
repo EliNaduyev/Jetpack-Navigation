@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    fun initLifeCycle(){
+    private fun initLifeCycle(){
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = vm
     }

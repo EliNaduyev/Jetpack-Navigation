@@ -32,7 +32,7 @@ class CanvasFragment2 : Fragment() {
         return binding.root
     }
 
-    fun initLifeCycle(){
+    private fun initLifeCycle(){
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = vm
     }

@@ -35,12 +35,12 @@ class SettingsFragment : Fragment() {
         log("${this::class.java.name} - onDestroy: is called")
     }
 
-    fun initLifeCycle(){
+    private fun initLifeCycle(){
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = vm
     }
 
-    fun initObservers() {
+    private fun initObservers() {
         vm.uiEvents.observe(viewLifecycleOwner){
             when(it){
                 UiEvents.Back -> findNavController().popBackStack()
