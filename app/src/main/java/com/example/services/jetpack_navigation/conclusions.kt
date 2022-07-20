@@ -6,4 +6,5 @@ package com.example.services.jetpack_navigation
  * 2. init in viewModel called after onCreateView and before onViewCreated
  * 3. vm.uiEvents.observe(viewLifecycleOwner) will not triggered in the background, but right after the screen
  * is turn on it will triggered and get the event that was assign/emitted
+ * 4. Channels are the BEST option for events that i don't want miss while app in BACKGROUND
  */

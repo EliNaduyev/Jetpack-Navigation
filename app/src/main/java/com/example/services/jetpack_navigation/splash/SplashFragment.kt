@@ -1,6 +1,7 @@
 package com.example.services.jetpack_navigation.splash
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +34,7 @@ class SplashFragment : Fragment() {
         log("${this::class.java.name} - onCreateView: is called")
         initLifeCycle()
         initObservers()
+
         return binding.root
     }
 
@@ -68,12 +70,14 @@ class SplashFragment : Fragment() {
 //        observeUiEventLiveData()
 //        observeUiEventSharedFlow()
 //        observeUiEventSharedFlowAccordingLifeCycle()
-        observeUiEventStateFlow()
+//        observeUiEventStateFlow()
+        observeUiEventChannel()
     }
 
     /**
-     * if the fragment after onStop the liveData observer will wait when the app is ready to
-     * navigate the user to the next screen and the actual navigation will work properly
+     * if the fragment after onStop the liveData observer will wait until the app is back to
+     * FOREGROUND and ready to navigate the user to the next screen and the actual
+     * navigation will work properly
      */
     private fun observeUiEventLiveData(){
         vm.uiEventsLiveData.observe(viewLifecycleOwner){
@@ -107,13 +111,24 @@ class SplashFragment : Fragment() {
         }
     }
 
-    private fun observeUiEventStateFlow(){
+    /**
+     * Collect the value when starting observe including the DEFAULT the we MUST to set, LiveData
+     * not obligates us to set default value but if we do set it will act the same
+     */
+    private fun observeUiEventStateFlowAccordingLifeCycle(){
         collectLatestLifecycleFlow(vm.uiEventsStateFlow){
-            log("observeUiEventStateFlow - StateFlow event arrived")
+            log("observeUiEventStateFlowAccordingLifeCycle - StateFlow event arrived")
             if(it != null)
                 onEvent(it)
             else
-                log("observeUiEventStateFlow - state flow is NULL - default value")
+                log("observeUiEventStateFlowAccordingLifeCycle - state flow is NULL - default value")
+        }
+    }
+
+    private fun observeUiEventChannel(){
+        collectLatestLifecycleFlow(vm.uiEventsChannel){
+            log("observeUiEventChannel - Channel event arrived")
+            onEvent(it)
         }
     }
 

@@ -5,12 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.services.jetpack_navigation.R
 import com.example.services.jetpack_navigation.databinding.FragmentHomeBinding
 import com.example.services.jetpack_navigation.log
+import com.example.services.jetpack_navigation.splash.collectLatestLifecycleFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
@@ -37,9 +40,34 @@ class HomeFragment : Fragment() {
         binding.viewModel = vm
     }
 
-    fun initObservers() {
+    private fun initObservers() {
         lifecycleScope.launchWhenCreated {
-            vm.uiEvents.collectLatest {
+            vm.uiEventsSharedFlow.collectLatest {
+                when(it){
+                    UiEvents.Next -> {
+                        findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
+                    }
+                }
+            }
+        }
+
+        /**
+         * emit NEXT event, the event is stored in the liveData viewModel when we back to this screen
+         * the liveData is register again and emit AGAIN the same event even with distinctUntilChanged
+         * and probably will distinct only next same events
+         */
+        lifecycleScope.launch {
+            vm.uiEventsLiveData.distinctUntilChanged().observe(viewLifecycleOwner) {
+                when(it){
+                    UiEvents.Next -> {
+                        findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
+                    }
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            collectLatestLifecycleFlow(vm.uiEventsChannel){
                 when(it){
                     UiEvents.Next -> {
                         findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
