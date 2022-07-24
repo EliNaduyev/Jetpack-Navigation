@@ -2,7 +2,7 @@ package com.example.services.jetpack_navigation.canvas
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.services.jetpack_navigation.canvas2.UiEvents
+import com.example.services.jetpack_navigation.guide_line.UiEvents
 import com.example.services.jetpack_navigation.log
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow

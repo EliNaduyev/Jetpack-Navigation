@@ -12,12 +12,12 @@
         android:label="CanvasFragment" >
         <action
             android:id="@+id/action_canvasFragment_to_canvasFragment2"
-            app:destination="@id/canvasFragment2" />
+            app:destination="@id/guidLineFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/canvasFragment2"
-        android:name="com.example.services.jetpack_navigation.canvas2.CanvasFragment2"
-        tools:layout="@layout/fragment_canvas_2"
-        android:label="CanvasFragment2" />
+        android:id="@+id/guidLineFragment"
+        android:name="com.example.services.jetpack_navigation.guide_line.GuidLineFragment"
+        tools:layout="@layout/fragment_guid_line"
+        android:label="GuidLineFragment" />
 </navigation>

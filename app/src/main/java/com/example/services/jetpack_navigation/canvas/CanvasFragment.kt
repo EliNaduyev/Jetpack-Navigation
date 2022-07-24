@@ -18,7 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.services.jetpack_navigation.R
-import com.example.services.jetpack_navigation.canvas2.UiEvents
+import com.example.services.jetpack_navigation.guide_line.UiEvents
 import com.example.services.jetpack_navigation.collectLatestLifecycleFlow
 import com.example.services.jetpack_navigation.databinding.FragmentCanvasBinding
 import com.example.services.jetpack_navigation.log

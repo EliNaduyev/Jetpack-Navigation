@@ -1,4 +1,4 @@
-package com.example.services.jetpack_navigation.canvas2
+package com.example.services.jetpack_navigation.guide_line
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,7 +7,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
-class CanvasViewModel2: ViewModel() {
+class GuidLineViewModel: ViewModel() {
     private val _uiEventsChannel = Channel<UiEvents>()
     val uiEventsChannel = _uiEventsChannel.receiveAsFlow()
 

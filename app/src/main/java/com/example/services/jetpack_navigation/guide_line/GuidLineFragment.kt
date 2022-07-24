@@ -1,4 +1,4 @@
-package com.example.services.jetpack_navigation.canvas2
+package com.example.services.jetpack_navigation.guide_line
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,14 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.services.jetpack_navigation.collectLatestLifecycleFlow
-import com.example.services.jetpack_navigation.databinding.FragmentCanvas2Binding
+import com.example.services.jetpack_navigation.databinding.FragmentGuidLineBinding
 import com.example.services.jetpack_navigation.log
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CanvasFragment2 : Fragment() {
-    private lateinit var binding: FragmentCanvas2Binding
-    val vm: CanvasViewModel2 by viewModel()
+class GuidLineFragment : Fragment() {
+    private lateinit var binding: FragmentGuidLineBinding
+    val vm: GuidLineViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +25,7 @@ class CanvasFragment2 : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View {
-        binding = FragmentCanvas2Binding.inflate(layoutInflater)
+        binding = FragmentGuidLineBinding.inflate(layoutInflater)
         log("${this::class.java.name} - onCreateView: is called")
         initLifeCycle()
         initObservers()
