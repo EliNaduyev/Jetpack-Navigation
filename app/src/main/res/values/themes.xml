@@ -2,15 +2,33 @@
     <!-- Base application theme. -->
     <style name="Theme.Jetpack_navigation" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">#F44646</item> <!-- implies when ACTIVE switch, checkedBox -->
+        <item name="colorPrimaryVariant">#F1B606</item>
         <item name="colorOnPrimary">@color/white</item>
+
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">#00FF0A</item> <!--implies when ACTIVE: Old Switch (Not appCompat), progress and seekbars -->
+        <item name="colorSecondaryVariant">#28D9D7</item>
+        <item name="colorOnSecondary">#C9B503</item> <!-- implies when INACTIVE switch, checkedBox -->
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="colorOnSurface">#673AB7</item> <!-- implies when INACTIVE switch, checkedBox -->
+
         <!-- Customize your theme here. -->
+        <!-- changing all TOP BARS in the app -->
+        <item name="toolbarStyle">@style/Theme.Custom.Toolbar</item>
+
+        <!-- changing all BUTTONS in the app -->
+        <item name="materialButtonStyle">@style/myButton</item>
     </style>
+
+    <style name="myButton" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/purple_200</item>
+    </style>
+
+    <style name="Theme.Custom.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="android:background">@color/light_gray</item>
+    </style>
+
+
 </resources>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.lifecycleScope
@@ -35,7 +36,21 @@ class HomeFragment : Fragment() {
         initLifeCycle()
         initObservers()
         initToolbarObservers()
+        darkLightModeListener()
+
         return binding.root
+    }
+
+    private fun darkLightModeListener(){
+        // set app theme based on PHONE settings of dark mode.
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+
+        binding.switch1.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked)
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            else
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
     private fun initLifeCycle(){
@@ -78,7 +93,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun initToolbarObservers(){
+    private fun initToolbarObservers(){
         binding.topAppBar.setNavigationOnClickListener {
             showMsg(binding.root, "menu")
         }

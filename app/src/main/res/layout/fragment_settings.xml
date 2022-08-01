@@ -14,6 +14,19 @@
         android:layout_height="match_parent"
         tools:context=".settings.SettingsFragment">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/settings_menu"
+            app:titleCentered="true"
+            app:navigationIcon="@drawable/ic_menu"
+            app:title="Tool bar title" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
