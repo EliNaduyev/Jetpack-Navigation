@@ -1,5 +1,6 @@
 package com.example.services.jetpack_navigation.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.example.services.jetpack_navigation.R
 import com.example.services.jetpack_navigation.collectLatestLifecycleFlow
 import com.example.services.jetpack_navigation.databinding.FragmentHomeBinding
 import com.example.services.jetpack_navigation.log
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -32,6 +34,7 @@ class HomeFragment : Fragment() {
         log("${this::class.java.name} - onCreateView: is called")
         initLifeCycle()
         initObservers()
+        initToolbarObservers()
         return binding.root
     }
 
@@ -75,4 +78,36 @@ class HomeFragment : Fragment() {
         }
     }
 
+    fun initToolbarObservers(){
+        binding.topAppBar.setNavigationOnClickListener {
+            showMsg(binding.root, "menu")
+        }
+
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            val v = binding.root
+            when (menuItem.itemId) {
+                R.id.edit -> {
+                    showMsg(v, "edit")
+                    true
+                }
+                R.id.settings -> {
+                    showMsg(v, "settings")
+                    true
+                }
+                R.id.send-> {
+                    showMsg(v, "send")
+                    true
+                }
+
+                else -> false
+            }
+        }
+    }
+
+}
+
+fun showMsg(view: View, msg: String){
+    Snackbar.make(view, msg, Snackbar.LENGTH_LONG).setAction("My Action") {
+
+    }.show()
 }

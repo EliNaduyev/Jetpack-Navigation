@@ -14,6 +14,21 @@
         android:layout_height="match_parent"
         tools:context=".guide_line.GuidLineFragment">
 
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/top_bar_menu"
+            app:navigationIcon="@drawable/ic_menu"
+            app:title="Tool bar title"
+            app:subtitle="My Sub Title"/>
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,18 +49,18 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_margin="15dp"
+                android:layout_weight="1"
                 android:onClick="@{() -> viewModel.next()}"
-                android:text="next"/>
+                android:text="next" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_margin="15dp"
+                android:layout_weight="1"
                 android:onClick="@{() -> viewModel.canvas()}"
-                android:text="canvas"/>
+                android:text="canvas" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
