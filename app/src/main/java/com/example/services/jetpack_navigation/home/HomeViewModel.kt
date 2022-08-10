@@ -23,6 +23,12 @@ class HomeViewModel: ViewModel() {
         log("${this::class.java.name} - init is called")
     }
 
+    fun checkPermissions(){
+        viewModelScope.launch {
+            _uiEventsChannel.send(UiEvents.CheckPermissions)
+        }
+    }
+
     fun next(){
 //        viewModelScope.launch {
 //            _uiEventsSharedFlow.emit(UiEvents.Next)

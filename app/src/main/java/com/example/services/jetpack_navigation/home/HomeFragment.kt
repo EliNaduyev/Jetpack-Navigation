@@ -10,10 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.services.jetpack_navigation.R
-import com.example.services.jetpack_navigation.collectLatestLifecycleFlow
+import com.example.services.jetpack_navigation.*
 import com.example.services.jetpack_navigation.databinding.FragmentHomeBinding
-import com.example.services.jetpack_navigation.log
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -22,6 +20,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     val vm: HomeViewModel by viewModel()
+    lateinit var permissionManager: PermissionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +36,7 @@ class HomeFragment : Fragment() {
         initObservers()
         initToolbarObservers()
         darkLightModeListener()
+        permissionManager = PermissionManager(requireActivity() as MainActivity)
 
         return binding.root
     }
@@ -90,6 +90,9 @@ class HomeFragment : Fragment() {
             }
 
             UiEvents.GoToCanvasFlow -> findNavController().navigate(R.id.action_fragment_to_canvas_graph)
+            UiEvents.CheckPermissions -> {
+                permissionManager.askPermissions()
+            }
         }
     }
 
