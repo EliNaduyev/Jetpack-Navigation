@@ -1,6 +1,5 @@
 package com.example.services.jetpack_navigation.home
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.services.jetpack_navigation.*
 import com.example.services.jetpack_navigation.databinding.FragmentHomeBinding
+import com.example.services.jetpack_navigation.managers.PermissionManager
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

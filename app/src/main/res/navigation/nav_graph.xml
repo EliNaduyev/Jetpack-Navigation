@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/filesFragment">
 
     <include app:graph="@navigation/canvas_graph" />
 
@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_fragment_to_canvas_graph"
             app:destination="@id/canvas_screens.xml" />
+        <action
+            android:id="@+id/action_homeFragment_to_filesFragment"
+            app:destination="@id/filesFragment" />
     </fragment>
 
     <fragment
@@ -36,4 +39,9 @@
         android:name="com.example.services.jetpack_navigation.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/filesFragment"
+        android:name="com.example.services.jetpack_navigation.files.FilesFragment"
+        android:label="fragment_files"
+        tools:layout="@layout/fragment_files" />
 </navigation>

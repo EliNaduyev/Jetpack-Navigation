@@ -1,4 +1,4 @@
-package com.example.services.jetpack_navigation
+package com.example.services.jetpack_navigation.managers
 
 import android.Manifest
 import android.util.Log
@@ -6,6 +6,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
 
+/**
+ * Created by Eli Naduyev 15.7.22
+ */
 class PermissionManager(private val activity: AppCompatActivity) {
     private val TAG = "PermissionManager"
 
