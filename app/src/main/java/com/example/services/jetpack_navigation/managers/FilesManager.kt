@@ -10,6 +10,7 @@ import android.os.Environment
 import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.content.FileProvider
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -261,17 +262,27 @@ class FilesManager(
         }
     }
 
-    //NOT work
+    /**
+     * Need to check if this function is work, i delete the authority maybe its work with out this
+     */
     fun shareViaEmail2(){
-        val fileLocation: String = fileLogger?.absolutePath.toString()
-        val intent = Intent(Intent.ACTION_SENDTO)
-        intent.type = "text/plain"
-        intent.data = Uri.parse("mailto:")
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://$fileLocation"))
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Sharing File...")
-        intent.putExtra(Intent.EXTRA_TEXT, "Sharing File...")
-        context.startActivity(Intent.createChooser(intent, "Share File"))
+        Log.d(TAG, "sendMail")
+        fileLogger?.let {
+            val message = "File to be shared is ${it.name}."
+            val subject = "Logs File"
+            val authority = ""
+
+            val path = FileProvider.getUriForFile(context, authority, it)
+            Log.d(TAG, "sendMail: take file from path: $path")
+            val intent = Intent()
+            intent.action = Intent.ACTION_SEND_MULTIPLE
+            intent.type = "message/rfc822"
+            intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, arrayListOf(path))
+            intent.putExtra(Intent.EXTRA_SUBJECT, subject)
+            intent.putExtra(Intent.EXTRA_TEXT, message)
+            intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+            context.startActivity(Intent.createChooser(intent, "send"))
+        }
     }
 
     companion object {
