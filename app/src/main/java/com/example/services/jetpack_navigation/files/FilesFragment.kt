@@ -36,7 +36,7 @@ class FilesFragment : Fragment() {
         }
 
         binding.shareFileBtn.setOnClickListener {
-            filesManager.x()
+//            filesManager.x()
         }
 
         return binding.root

@@ -25,6 +25,8 @@
             </intent-filter>
         </activity>
 
+        <service android:name=".service.MyService"/>
+
 <!--        <provider-->
 <!--            android:name="androidx.core.content.FileProvider"-->
 <!--            android:authorities="${applicationId}.fileprovider"-->
