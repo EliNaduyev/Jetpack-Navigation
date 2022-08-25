@@ -1,10 +1,12 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
-    compileSdk 31
+    compileSdk 32
 
     defaultConfig {
         applicationId "com.example.services.jetpack_navigation"
@@ -33,6 +35,14 @@ android {
     dataBinding {
         enabled = true
     }
+
+    buildFeatures {
+        compose true //compose migration
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.3.0'
+    }
 }
 
 dependencies {
@@ -40,6 +50,7 @@ dependencies {
     def nav_version = "2.3.5"
     def lifecycle_version = "2.5.0"
     def koin_version= "3.2.0"
+    def room_version = "2.4.2"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
@@ -70,4 +81,31 @@ dependencies {
     implementation "io.insert-koin:koin-androidx-workmanager:$koin_version"
     // Navigation Graph
     implementation "io.insert-koin:koin-androidx-navigation:$koin_version"
+
+
+    // Room
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"  // it will crash without it
+    androidTestImplementation "androidx.room:room-testing:$room_version"
+
+    // ------------- Compose -------------
+    // Integration with activities
+    implementation 'androidx.activity:activity-compose:1.5.1'
+    // Compose Material Design
+    implementation 'androidx.compose.material:material:1.2.1'
+    // Animations
+    implementation 'androidx.compose.animation:animation:1.2.1'
+    // Tooling support (Previews, etc.)
+    implementation 'androidx.compose.ui:ui-tooling:1.2.1'
+    // Integration with ViewModels
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1'
+    // UI Tests
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4:1.2.1'
+
+    // When using a MDC theme
+    implementation "com.google.android.material:compose-theme-adapter:1.1.16"
+
+    // When using a AppCompat theme
+    implementation "com.google.accompanist:accompanist-appcompat-theme:0.25.1"
 }

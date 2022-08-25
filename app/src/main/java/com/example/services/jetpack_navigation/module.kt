@@ -1,6 +1,7 @@
 package com.example.services.jetpack_navigation
 
 import com.example.services.jetpack_navigation.canvas.CanvasViewModel
+import com.example.services.jetpack_navigation.db.DbViewModel
 import com.example.services.jetpack_navigation.guide_line.GuidLineViewModel
 import com.example.services.jetpack_navigation.home.HomeViewModel
 import com.example.services.jetpack_navigation.settings.SettingsViewModel
@@ -14,4 +15,5 @@ val viewModelModule = module {
     viewModel { CanvasViewModel() }
     viewModel { GuidLineViewModel() }
     viewModel { SettingsViewModel() }
+    viewModel { DbViewModel() }
 }
