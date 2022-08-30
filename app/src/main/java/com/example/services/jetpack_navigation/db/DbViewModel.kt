@@ -1,26 +1,34 @@
 package com.example.services.jetpack_navigation.db
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.services.jetpack_navigation.log
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class DbViewModel: ViewModel() {
+class DbViewModel(private val userRepo: UserRepo): ViewModel() {
     val uiEvents = MutableLiveData<UiEvents>()
+    private val TAG = "DbViewModel"
 
     init {
         log("${this::class.java.name} - init is called")
+        getAllUsers()
     }
 
-    fun next(){
-        uiEvents.value = UiEvents.Next
+    fun addUser(userModel: UserModel) {
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepo.addUser(userModel)
+        }
     }
 
-    fun back(){
-        uiEvents.value = UiEvents.Back
+    private fun getAllUsers() {
+        viewModelScope.launch(Dispatchers.Main) {
+            userRepo.getAllUsers().observeForever {
+                Log.d(TAG, "getAllUsers: is updated new list = $it")
+            }
+        }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        log("${this::class.java.name} - onCleared is called")
-    }
 }
