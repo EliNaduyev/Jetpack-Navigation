@@ -11,6 +11,9 @@ interface UserDao {
     @Query("SELECT * FROM user_table")
     fun getAllUsersObservable(): LiveData<List<UserTable>>
 
+    @Delete
+    fun deleteUser(convertToUserTable: UserTable)
+
 //    @Query("SELECT * FROM settings WHERE userId = :id")
 //    fun getRecord(id: String): SettingsTableDto
 //

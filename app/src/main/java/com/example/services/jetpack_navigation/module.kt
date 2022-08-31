@@ -32,5 +32,6 @@ val dbModels = module {
 
     single { provideDatabase(androidApplication()) } //androidApplication required androidContext in App class
     factory { get<AppDatabase>().getUserDao() }
+    factory { get<AppDatabase>().getUserItemDao() }
     single { UserRepo(get()) }
 }

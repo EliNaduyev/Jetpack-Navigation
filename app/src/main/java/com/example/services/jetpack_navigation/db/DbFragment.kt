@@ -6,14 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
+import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.services.jetpack_navigation.databinding.FragmentDbBinding
 import com.example.services.jetpack_navigation.log
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -49,16 +56,62 @@ class DbFragment : Fragment() {
     
     @Composable
     private fun ScreenContent(vm: DbViewModel) {
-        Text(text = "test")
+        val allUsers = vm.allUsers.collectAsState().value
 
+        Text(text = "test")
         Column(
             Modifier.background(Color(0xFFD1D2D1)),
-            /*verticalArrangement = Arrangement.Center*/) {
+            /*verticalArrangement = Arrangement.SpaceBetween*/) {
+            UsersList(allUsers)
+            ButtonsSection()
+        }
+    }
+
+    @Composable
+    fun ButtonsSection() {
+        Row(
+            Modifier
+                .padding(10.dp)
+                .fillMaxWidth(), horizontalArrangement = Arrangement.SpaceAround) {
             Button(onClick = {
                 val userModel = UserModel(UUID.randomUUID().toString(), "eli")
                 vm.addUser(userModel)
             }) {
                 Text(text = "Add User")
+            }
+
+            Button(onClick = {
+            }) {
+                Text(text = "Delete All")
+            }
+
+            Button(onClick = {
+            }) {
+                Text(text = "Test")
+            }
+        }
+    }
+
+    @Composable
+    fun UsersList(userList: List<UserModel>) {
+        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+            userList.forEach {
+                UserRow(it)
+            }
+        }
+    }
+
+    @Composable
+    fun UserRow(user: UserModel) {
+        Card(modifier = Modifier
+            .padding(all = 5.dp)
+            .fillMaxWidth()
+            .clickable {
+                vm.deleteUser(user)
+            }) {
+            Column(modifier = Modifier.padding(all = 10.dp)) {
+                Text(user.name, fontSize = 22.sp, fontWeight = FontWeight.W700, modifier = Modifier.padding(5.dp))
+                Text("userId - ${user.userId}", color = Color.Gray, modifier = Modifier.padding(5.dp))
             }
         }
     }

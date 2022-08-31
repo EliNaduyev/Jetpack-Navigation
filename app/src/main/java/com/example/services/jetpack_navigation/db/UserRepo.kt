@@ -31,6 +31,10 @@ class UserRepo(private val userDao: UserDao) {
     }
 
     private fun convertToUserModel(userTable: UserTable): UserModel {
-        return UserModel(userTable.userId, userTable.name)
+        return UserModel(userTable)
+    }
+
+    fun deleteUser(userModel: UserModel) {
+        userDao.deleteUser(convertToUserTable(userModel))
     }
 }
