@@ -19,5 +19,10 @@
         android:id="@+id/guidLineFragment"
         android:name="com.example.services.jetpack_navigation.guide_line.GuidLineFragment"
         tools:layout="@layout/fragment_guid_line"
-        android:label="GuidLineFragment" />
+        android:label="GuidLineFragment">
+
+        <deepLink
+            android:id="@+id/inner_screen_inside_nav_canvas"
+            app:uri="any-app://guid_line_frag_screen" />
+    </fragment>
 </navigation>

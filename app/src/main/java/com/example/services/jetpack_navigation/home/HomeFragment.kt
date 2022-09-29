@@ -1,5 +1,6 @@
 package com.example.services.jetpack_navigation.home
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -36,7 +37,7 @@ class HomeFragment : Fragment() {
         initObservers()
         initToolbarObservers()
         darkLightModeListener()
-        permissionManager = PermissionManager(requireActivity() as MainActivity)
+//        permissionManager = PermissionManager(requireActivity() as MainActivity)
 
         return binding.root
     }
@@ -67,7 +68,7 @@ class HomeFragment : Fragment() {
 
         /**
          * emit NEXT event, the event is stored in the liveData viewModel when we back to this screen
-         * the liveData is register again and emit AGAIN the same event even with distinctUntilChanged
+         * the liveData is register again and triggers the last event the was received even with distinctUntilChanged
          * and probably will distinct only next same events
          */
         lifecycleScope.launch {
@@ -89,7 +90,11 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
             }
 
-            UiEvents.GoToCanvasFlow -> findNavController().navigate(R.id.action_fragment_to_canvas_graph)
+            UiEvents.GoToCanvasFlow -> {
+//                findNavController().navigate(R.id.action_fragment_to_canvas_graph)
+                val deeplinkY = Uri.parse("any-app://guid_line_frag_screen")
+                findNavController().navigate(deeplinkY)
+            }
             UiEvents.CheckPermissions -> {
                 permissionManager.askPermissions()
             }
