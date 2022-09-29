@@ -91,9 +91,13 @@ class HomeFragment : Fragment() {
             }
 
             UiEvents.GoToCanvasFlow -> {
-//                findNavController().navigate(R.id.action_fragment_to_canvas_graph)
-                val deeplinkY = Uri.parse("any-app://guid_line_frag_screen")
+//                findNavController().navigate(R.id.action_fragment_to_canvas_graph) // simple navigation
+
+                val deeplinkY = Uri.parse("any-app://guid_line_frag_screen") // navigation to inner screen in nested graph via deep link
                 findNavController().navigate(deeplinkY)
+
+
+//                findNavController().navigate(R.id.global_action_to_guid_line_screen) // todo this method is not work lead to CRASH
             }
             UiEvents.CheckPermissions -> {
                 permissionManager.askPermissions()

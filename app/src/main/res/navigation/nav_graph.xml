@@ -53,4 +53,7 @@
         android:id="@+id/dbFragment"
         android:name="com.example.services.jetpack_navigation.db.DbFragment"
         android:label="DbFragment" />
+
+    <action android:id="@+id/global_action_to_guid_line_screen"
+        app:destination="@id/guidLineFragment"/>
 </navigation>
